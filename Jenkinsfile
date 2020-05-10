@@ -10,5 +10,15 @@ pipeline {
                 '''
             }
         }
+
+        stage('Unit Test') {
+            steps {
+                sh 'echo "Testando o Compile"'
+                sh '''
+                    echo "Complicando o pacote"
+                    /home/lab1/docker/apache-maven-3.6.3/bin/mvn test
+                '''
+            }
+        }
     }
 }
