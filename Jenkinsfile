@@ -1,9 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage ('Build Backend') {
+        stage('Setting the variables values') {
             steps {
-                sh '/bin/bash mvn clean package -DskipTests=true'
+                bash '''
+                    #!/bin/bash
+                    echo "hello world"
+                '''
             }
         }
     }
