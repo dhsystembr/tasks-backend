@@ -26,7 +26,7 @@ pipeline {
             }
 
             steps {
-                withSonarQubeEnv('SONAR LOCAL'){
+                withSonarQubeEnv('Sonar_local'){
                     sh '''
                     echo "Setando variavel"
                     ${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBackEnd -Dsonar.host.url=http://localhost:9001 -Dsonar.login=e50f641085e979346b003ba826bedd45e87a3530 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/src/test/**,**/model/**,**Application.java
