@@ -3,7 +3,11 @@ pipeline {
     stages {
         stage('Setting the variables values') {
             steps {
-                sh "mvn clean package"
+                sh 'echo "Hello World"'
+                sh '''
+                    echo "Multiline shell steps works too"
+                    ls -lah
+                '''
             }
         }
     }
