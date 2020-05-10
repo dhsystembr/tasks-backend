@@ -6,7 +6,7 @@ pipeline {
                 sh 'echo "Compile"'
                 sh '''
                     echo "Complicando o pacote"
-                    /home/lab1/docker/apache-maven-3.6.3/bin/mvn clean package
+                    /home/lab1/docker/apache-maven-3.6.3/bin/mvn clean package -DskipTests=true
                 '''
             }
         }
