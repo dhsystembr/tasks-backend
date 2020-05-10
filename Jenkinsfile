@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Setting the variables values') {
             steps {
-                sh "ls -a && pwd && echo ${FOO}"
+                sh "ls -a && pwd"
             }
         }
     }
