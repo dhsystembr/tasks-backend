@@ -46,5 +46,13 @@ pipeline {
                 
             }
         }
+        stage('Deploy Back End') {
+            steps {
+                sh '''
+                    echo "Quality Gate"
+                '''
+                deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+            }
+        }
     }
 }
