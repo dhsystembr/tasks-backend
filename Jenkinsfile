@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Setting the variables values') {
             steps {
-                sh "ls -a && pwd"
+                sh "mvn clean package"
             }
         }
     }
