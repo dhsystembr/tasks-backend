@@ -60,8 +60,8 @@ pipeline {
                     echo "API Test"
                 '''
                 dir('api-test') {
+                	git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/api-test'
                     sh '''
-                    	git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/api-test'\
                     	/home/lab1/docker/apache-maven-3.6.3/bin/mvn test
                 	'''
                 }    
