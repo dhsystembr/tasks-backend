@@ -13,10 +13,22 @@ pipeline {
 
         stage('Unit Test') {
             steps {
-                sh 'echo "Testando o Compile"'
                 sh '''
                     echo "Complicando o pacote"
                     /home/lab1/docker/apache-maven-3.6.3/bin/mvn test
+                '''
+            }
+        }
+
+        stage('Sonar Analysis') {
+            environment {
+                scannerHome = tool = 'SONAR_SCANNER'
+            }
+
+            steps {
+                sh '''
+                    echo "Setando variavel"
+                    ${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBackEnd -Dsonar.host.url=http://localhost:9001 -Dsonar.login=e50f641085e979346b003ba826bedd45e87a3530 -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/src/test/**,**/model/**,**Application.java
                 '''
             }
         }
