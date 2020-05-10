@@ -59,7 +59,9 @@ pipeline {
                 sh '''
                     echo "API Test"
                 '''
-                git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/api-test'
+                dir('api-test') {
+                    git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/api-test'
+                }    
             }
         }
     }
