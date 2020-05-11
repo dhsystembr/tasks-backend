@@ -78,6 +78,19 @@ pipeline {
                 }    
             }
         }
+        stage('Functional Test') {
+            steps {
+                sh '''
+                    echo "Functional Test"
+                '''
+                dir('functional-test') {
+                	git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/tasks-funcional-test'
+                    sh '''
+                    	/home/lab1/docker/apache-maven-3.6.3/bin/mvn test
+                	'''
+                }   
+            }
+        }
         stage('Deploy PROD') {
             steps {
                 sh '''
@@ -85,7 +98,6 @@ pipeline {
                     docker-compose build
                     docker-compose up -d
                 '''
-                }    
             }
         }
     }
