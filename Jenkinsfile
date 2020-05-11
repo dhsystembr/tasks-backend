@@ -105,7 +105,7 @@ pipeline {
                 sh '''
                     echo "Functional Test.........."
                 '''
-                sleep(10)
+                sleep(20)
                 dir('tasks-funcional-test') {
                     sh '''
                     	/home/lab1/docker/apache-maven-3.6.3/bin/mvn verify -Dskip.surefire.tests
