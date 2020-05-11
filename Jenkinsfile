@@ -95,7 +95,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Deploy PROD"
-                    docker-compose -f /home/lab1/.jenkins/workspace/DeployBackEnd/docker-compose.yml build
+                    docker-compose -f /home/lab1/.jenkins/workspace/HelloPipeline/docker-compose-prd.yml build
                     docker-compose up -d
                 '''
             }
