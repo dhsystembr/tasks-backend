@@ -105,7 +105,7 @@ pipeline {
                 sh '''
                     echo "Functional Test.........."
                 '''
-                sleep(40)
+                sleep(10)
                 dir('tasks-funcional-test') {
                 	git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/tasks-funcional-test'
                     sh '''
