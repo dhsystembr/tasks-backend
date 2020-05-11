@@ -36,7 +36,7 @@ pipeline {
                 sh '''
                     echo "Quality Gate"
                 '''
-                    sleep(5)
+                    sleep(10)
                     timeout(time: 1, unit: 'MINUTES') {
                         waitForQualityGate abortPipeline: true
                     }
@@ -75,6 +75,19 @@ pipeline {
                     	/home/lab1/docker/apache-maven-3.6.3/bin/mvn clean package
                 	'''
                     deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-frontend', war: 'target/tasks.war'
+                }    
+            }
+        }
+        stage('Functional Test') {
+            steps {
+                sh '''
+                    echo "Functional Test"
+                '''
+                dir('functional-test') {
+                	git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/tasks-funcional-test'
+                    sh '''
+                    	/home/lab1/docker/apache-maven-3.6.3/bin/mvn test
+                	'''
                 }    
             }
         }
