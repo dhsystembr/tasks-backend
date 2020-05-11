@@ -73,6 +73,9 @@ pipeline {
                 '''
                 dir('frontend') {
                     git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/tasks-frontend'
+                    sh '''
+                    	/home/lab1/docker/apache-maven-3.6.3/bin/mvn clean package
+                	'''
                     deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-frontend', war: 'target/tasks-frontend.war'
                 }    
             }
