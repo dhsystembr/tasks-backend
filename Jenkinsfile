@@ -82,14 +82,9 @@ pipeline {
             steps {
                 sh '''
                     echo "Deploy PROD"
+                    docker-compose build
+                    docker-compose up -d
                 '''
-                sleep(10)
-                dir('frontend') {
-                    git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/tasks-frontend'
-                    sh '''
-                    	docker-compose build
-                        docker-compose up -d
-                	'''
                 }    
             }
         }
