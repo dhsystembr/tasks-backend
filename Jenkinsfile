@@ -48,7 +48,7 @@ pipeline {
                 sh '''
                     echo "Deploy Back End"
                 '''
-                    deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'   
+                    deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'  
             }
         }
         stage('API Test') {
@@ -74,7 +74,7 @@ pipeline {
                     sh '''
                     	/home/lab1/docker/apache-maven-3.6.3/bin/mvn clean package
                 	'''
-                    deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-frontend', war: 'target/tasks-frontend.war'
+                    deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-frontend', war: 'target/tasks.war'
                 }    
             }
         }
