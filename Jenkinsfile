@@ -78,15 +78,17 @@ pipeline {
                 }    
             }
         }
-        stage('Functional Test') {
+        stage('Deploy PROD') {
             steps {
                 sh '''
-                    echo "Functional Test"
+                    echo "Deploy PROD"
                 '''
-                dir('functional-test') {
-                	git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/tasks-funcional-test'
+                sleep(10)
+                dir('frontend') {
+                    git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/tasks-frontend'
                     sh '''
-                    	/home/lab1/docker/apache-maven-3.6.3/bin/mvn test
+                    	docker-compose build
+                        docker-compose up -d
                 	'''
                 }    
             }
