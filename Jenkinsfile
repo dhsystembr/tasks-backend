@@ -103,9 +103,9 @@ pipeline {
         stage('HealthCheck') {
             steps {
                 sh '''
-                    echo "Functional Test"
+                    echo "Functional Test.........."
                 '''
-                sleep(15)
+                sleep(10)
                 dir('functional-test') {
                     sh '''
                     	/home/lab1/docker/apache-maven-3.6.3/bin/mvn verify -Dskip.surefire.tests 
