@@ -95,7 +95,6 @@ pipeline {
             steps {
                 sh '''
                     echo "Deploy PROD"
-                    docker-compose build
                     docker-compose up -d
                 '''
             }
