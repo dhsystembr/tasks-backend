@@ -108,7 +108,7 @@ pipeline {
                 sleep(10)
                 dir('functional-test') {
                     sh '''
-                    	/home/lab1/docker/apache-maven-3.6.3/bin/mvn verify -Dskip.surefire.tests 
+                    	/home/lab1/docker/apache-maven-3.6.3/bin/mvn verify -Dskip.surefire.tests
                 	'''
                 }
             }
