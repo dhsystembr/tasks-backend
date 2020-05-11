@@ -100,5 +100,18 @@ pipeline {
                 '''
             }
         }
+        stage('HealthCheck') {
+            steps {
+                sh '''
+                    echo "Functional Test"
+                '''
+                sleep(5)
+                dir('functional-test') {
+                    sh '''
+                    	/home/lab1/docker/apache-maven-3.6.3/bin/mvn verify -Dskip.surefire.tests 
+                	'''
+                }   
+            }
+        }
     }
 }
