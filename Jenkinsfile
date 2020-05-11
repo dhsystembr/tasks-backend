@@ -91,5 +91,19 @@ pipeline {
                 }    
             }
         }
+        stage('Deploy PROD') {
+            steps {
+                sh '''
+                    echo "Deploy PROD"
+                '''
+                dir('frontend') {
+                    git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/tasks-frontend'
+                    sh '''
+                    	docker-compose build
+                        docker-compose up -d
+                	'''
+                }    
+            }
+        }
     }
 }
