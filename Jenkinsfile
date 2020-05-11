@@ -10,7 +10,6 @@ pipeline {
                 '''
             }
         }
-
         stage('Unit Test') {
             steps {
                 sh '''
@@ -19,12 +18,10 @@ pipeline {
                 '''
             }
         }
-
         stage('Sonar Analysis') {
             environment {
                 scannerHome = tool "SONAL_SCANER"
             }
-
             steps {
                 withSonarQubeEnv('Sonar_local'){
                     sh '''
@@ -49,9 +46,11 @@ pipeline {
         stage('Deploy Back End') {
             steps {
                 sh '''
-                    echo "Quality Gate"
+                    echo "Deploy Back End"
                 '''
-                deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+                dir('backend') {
+                    deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+                }    
             }
         }
         stage('API Test') {
@@ -64,6 +63,17 @@ pipeline {
                     sh '''
                     	/home/lab1/docker/apache-maven-3.6.3/bin/mvn test
                 	'''
+                }    
+            }
+        }
+        stage('Deploy Front End') {
+            steps {
+                sh '''
+                    echo "Deploy Front End"
+                '''
+                dir('frontend') {
+                    git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/tasks-frontend'
+                    deploy adapters: [tomcat8(credentialsId: 'tomcat_login', path: '', url: 'http://localhost:8001')], contextPath: 'tasks-frontend', war: 'target/tasks-frontend.war'
                 }    
             }
         }
