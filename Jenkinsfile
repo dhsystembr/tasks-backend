@@ -107,6 +107,7 @@ pipeline {
                 '''
                 sleep(40)
                 dir('tasks-funcional-test') {
+                	git credentialsId: 'github_login', url: 'https://github.com/dhsystembr/tasks-funcional-test'
                     sh '''
                     	/home/lab1/docker/apache-maven-3.6.3/bin/mvn verify -Dskip.surefire.tests
                 	'''
