@@ -120,10 +120,10 @@ pipeline {
 			junit allowEmptyResults:true, testResults: 'target/surefire-reports/*.xml, api-test/target/surefire-reports/*.xml, tasks-funcional-test/target/surefire-reports/*.xml, tasks-funcional-test/target/failsafe-reports/*.xml'
 		}
 		unsuccessful {
-		    emailext attachLog: true, body: 'See the attached log', subject: 'Build $BUILD_NUMBER has failed', to: 'dhensilva+jenkins@gmail.com'
+		    emailext attachLog: true, body: 'See the attached log', subject: 'Build $BUILD_NUMBER has failed', to: 'dhsystembr+jenkins@gmail.com'
 		}
 		fixed {
-		    emailext attachLog: true, body: 'See the attached log', subject: 'Build $BUILD_NUMBER is finally', to: 'dhensilva+jenkins@gmail.com'
+		    emailext attachLog: true, body: 'See the attached log', subject: 'Build $BUILD_NUMBER is finally', to: 'dhsystembr+jenkins@gmail.com'
 		}
 
 	}
